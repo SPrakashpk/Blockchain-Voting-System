@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login | E-Voting System using Blockchain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #00b0ff, #0043ca);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin: 10px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .header {
+            font-size: 2.2em;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 3px;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: slideDown 1s ease-out;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+            width: 350px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #00b0ff;
+            color: white;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0072ff;
+        }
+
+        .alert {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .alert-success { background-color: #4CAF50; color: white; }
+        .alert-danger { background-color: #f44336; color: white; }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>E-Voting System using Blockchain</h1>
+    </div>
+
+    <!-- Login Form Container -->
+    <div class="container">
+        <h2>User Login</h2>
+        <form method="POST">
+            <input type="text" name="voterid" placeholder="Voter ID" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="submit" value="Login">
+        </form>
+
+        <!-- Flash Messages for Login Feedback -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+</body>
+</html>

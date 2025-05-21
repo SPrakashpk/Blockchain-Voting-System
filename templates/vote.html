@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote | E-Voting Blockchain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            margin-top: 40px;
+            background-color: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            width: 400px;
+        }
+
+        .candidate-options {
+            margin-top: 15px;
+        }
+
+        .candidate-options label {
+            display: block;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .candidate-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button, .back-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #ffffff;
+            color: #0072ff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .back-btn {
+            background-color: #ff4444;
+            color: white;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background-color: #e0e0e0;
+            color: #ff4444;
+        }
+
+        .message {
+            margin-top: 20px;
+        }
+
+        .alert-success { color: #00ff99; }
+        .alert-danger { color: #ff4444; }
+        .alert-warning { color: #ffff66; }
+    </style>
+
+    <script>
+        function confirmVote() {
+            const confirmed = confirm("Are you sure you want to cast your vote?");
+            return confirmed;
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    Cast Your Vote
+</header>
+
+<div class="container">
+    <form method="POST" onsubmit="return confirmVote();">
+        <div class="candidate-options">
+            <p>Select a candidate:</p>
+            {% for candidate in candidates %}
+                <label>
+                    <input type="radio" name="candidate_index" value="{{ loop.index0 }}" required>
+                    {{ candidate }}
+                </label>
+            {% endfor %}
+        </div>
+
+        <button type="submit">Submit Vote</button>
+    </form>
+
+    <div class="message">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="alert-{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Back Button -->
+    <a href="/" class="back-btn">Back to Home</a>
+</div>
+
+</body>
+</html>

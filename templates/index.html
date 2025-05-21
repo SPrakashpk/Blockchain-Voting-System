@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Voting System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            background-size: 300% 300%;
+            animation: gradient 10s ease infinite;
+            color: #fff;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        nav .menu a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav .menu a:hover {
+            color: #00ffff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 30px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .flash-message {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .flash-message p {
+            font-size: 1em;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .flash-message .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .flash-message .danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.1);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">E-Voting System</div>
+        <div class="menu">
+            <a href="/admin">Admin</a>
+            <a href="/user">User</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Welcome to the E-Voting System</h1>
+        <p>
+            This blockchain-based e-voting system ensures secure, transparent, and tamper-proof elections.
+            Using smart contracts and face recognition for user verification, it prevents fraud and ensures
+            only registered voters can cast their vote once. Embrace the future of digital democracy.
+        </p>
+    </div>
+
+    <div class="flash-message">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ 'success' if category == 'success' else 'danger' }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <footer>
+        &copy; 2025 E-Voting Blockchain Project | All rights reserved.
+    </footer>
+</body>
+</html>

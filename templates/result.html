@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voting Results | E-Voting Blockchain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #12c2e9, #c471ed, #f64f59);
+            background-size: 300% 300%;
+            animation: gradientBG 12s ease infinite;
+            color: #fff;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #fff;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        tr:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        E-Voting System using Blockchain
+    </header>
+
+    <div class="container">
+        <h3>Voting Results</h3>
+        <table>
+            <tr>
+                <th>Candidate</th>
+                <th>Votes</th>
+            </tr>
+            {% for name, vote_count in results %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ vote_count }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <footer>
+        &copy; 2025 E-Voting Blockchain System. All rights reserved.
+    </footer>
+</body>
+</html>
